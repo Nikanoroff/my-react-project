@@ -3,11 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 
-import Message from './message';
-
 const name = 'Vania is here! '
-const m = 'hello this is my message!'
-
 
 ReactDOM.render(
   <React.StrictMode>
@@ -15,14 +11,5 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
-
-
-ReactDOM.render(
-  <React.StrictMode>
-    <Message myMessage={m} backgroundYellow={'yellow'} />
-  </React.StrictMode>,
-  document.getElementById('message')
-);
-
 
 //в App передали пропсы(свойства) и они передались как обьект
