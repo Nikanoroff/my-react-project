@@ -2,14 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import { ThemeProvider } from '@emotion/react';
+import theme from './theme/theme';
 
-const name = 'Vania is here! '
 
 ReactDOM.render(
   <React.StrictMode>
-    <App myName={name} showGreen={false} paddingTop={'100px'} />
+
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
+
   </React.StrictMode>,
   document.getElementById('root')
 );
 
-//в App передали пропсы(свойства) и они передались как обьект
+
