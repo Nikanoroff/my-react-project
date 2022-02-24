@@ -19,7 +19,7 @@ const MessageList = (props) => {
 
             <List sx={{ width: '100%', bgcolor: grey }}>
 
-                {messages.map((item, index) => (
+                {messages?.map((item, index) => (
                     <ListItem key={index}>
                         <ListItemAvatar>
                             <Avatar>
