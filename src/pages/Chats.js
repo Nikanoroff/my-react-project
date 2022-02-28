@@ -1,33 +1,34 @@
-import { useParams } from "react-router-dom"
+// import { Paper } from "@mui/material"
+// import { useState } from "react"
+// import { useParams } from "react-router-dom"
+// import MessageList from "../components/MessageList"
 // import { AUTHORS } from "../constants/common"
-import { Paper } from '@mui/material'
-import ChatList from '../components/ChatList'
-import React, { useState } from 'react';
-import NotFound from '../pages/NotFound'
-import MessageList from '../components/MessageList'
-import ControlPanel from "../components/ControlPanel"
 
 
-const Chats = (props) => {
-    const [chats, setChats] = props
-    const { chatId } = useParams()
+// const initialChat = {
+//     id1: {
+//         name: 'Chat 1',
+//         messages: [{ text: 'message from that Chat', author: AUTHORS.bot }]
+//     },
+//     id2: {
+//         name: 'Chat 2',
+//         messages: [{ text: 'message from another Chat', author: AUTHORS.me }]
+//     }
+// }
 
-    if (!chats[chatId]) {
-        return <NotFound />
-    }
+
+
+const Chats = () => {
+
+    // const [chats, setChats] = useState(initialChat)
+    // const { chatId } = useParams()
 
     return (
-        <div className='workPlace'>
-            <div className='chatList'>
-                <ChatList chats={chats} />
-            </div>
+        <div>
+            {/* <Paper elevation={1}>Наш Массив
+                <MessageList messages={chats[chatId].messages} />
+            </Paper> */}
 
-            <div className='chatItem'>
-                <Paper elevation={1}>
-                    <MessageList messages={chats[chatId].messages} />
-                    <ControlPanel chats={chats} setChats={setChats} />
-                </Paper>
-            </div >
         </div>
     )
 }
