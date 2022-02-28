@@ -130,4 +130,11 @@ font-size: 8px;
 
 .link{
   color: antiquewhite;
+  font-size: 34px;
+  text-decoration: none;
+}
+
+.horizontalMenu{
+  display: flex;
+  justify-content: space-between; 
 }

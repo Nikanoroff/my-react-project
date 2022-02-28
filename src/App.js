@@ -16,6 +16,8 @@ import Profile from './pages/Profile';
 import Chats from './pages/Chats';
 import NotFound from './pages/NotFound';
 
+import { grey } from "@mui/material/colors";
+
 
 
 function App(props) {
@@ -64,71 +66,58 @@ function App(props) {
     <React.Fragment>
       <header className='App-header'>
 
+        <List sx={{
+          width: '100%',
+          bgcolor: grey,
+          maxWidth: 350,
+          display: 'flex',
+          justifyContent: 'space-between'
+        }}>
+          <ListItem>
+            <Link to='/' className='link' >Home</Link>
+          </ListItem>
+          <ListItem>
+            <Link to='/profile' className='link'>Profile</Link>
+          </ListItem>
+          <ListItem>
+            <Link to='/chats' className='link' >Chats</Link>
+          </ListItem>
+        </List>
+
         <div className='chatList'></div>
 
+        <Routes>
+          <Route path='/' exact element={<Home />} />
+          <Route path='/profile' element={<Profile />} />
+          <Route path='/chats/:chatId' element={<Chats />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
 
-        <div className='workPlace'>
-          <div className='chatList'>
-            <List>
-              <ListItem>
-                <Link to='/' className='link' >Home</Link>
-              </ListItem>
-              <ListItem>
-                <Link to='/profile' className='link'>Profile</Link>
-              </ListItem>
-              <ListItem>
-                <Link to='/chats' className='link' >Chats</Link>
-              </ListItem>
-            </List>
-          </div>
+        <div className='controlPlace'>
+          <TextField
+            style={{ margin: '20px' }}
+            id='outlined-basic'
+            label='Send Your Message'
+            variant='outlined'
+            className='input'
+            placeholder='Say Hello Bot Stepan!'
+            type={'text'}
+            value={value}
+            onChange={handleInput}
+            autoFocus={true}
+          />
 
-          <div className='chatItem'>
-
-
-            <Routes>
-              <Route path='/' exact element={<Home />} />
-              <Route path='/profile' element={<Profile />} />
-              <Route path='/chats/:chatId' element={<Chats />} />
-              <Route path="*" element={<NotFound />} />
-
-
-            </Routes>
-
-
-            <Paper>Наш Массив
-              <MessageList messages={messagelist} />
-            </Paper>
-
-            <div className='controlPlace'>
-              <TextField
-                style={{ margin: '20px' }}
-                id='outlined-basic'
-                label='Send Your Message'
-                variant='outlined'
-                className='input'
-                placeholder='Say Hello Bot Stepan!'
-                type={'text'}
-                value={value}
-                onChange={handleInput}
-                autoFocus={true}
-              />
-
-              <Fab color='primary'
-                className='button'
-                type={'button'}
-                onClick={handlerButton}
-                onKeyDown={handlerKeyDown}
-                style={{
-                  borderColor: theme.palette.sec
-                }}>
-                <Send />
-              </Fab>
-            </div>
-          </div>
+          <Fab color='primary'
+            className='button'
+            type={'button'}
+            onClick={handlerButton}
+            onKeyDown={handlerKeyDown}
+            style={{
+              borderColor: theme.palette.sec
+            }}>
+            <Send />
+          </Fab>
         </div>
-
-
-        <h1>{props.myName}</h1>
 
         <Counter />
         <Example />

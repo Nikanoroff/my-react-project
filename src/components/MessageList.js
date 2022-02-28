@@ -17,7 +17,7 @@ const MessageList = (props) => {
     return (
         <div className='messanger'>
 
-            <List sx={{ width: '100%', bgcolor: grey }}>
+            <List sx={{ width: '100%', bgcolor: grey, maxWidth: 350 }}>
 
                 {messages?.map((item, index) => (
                     <ListItem key={index}>
