@@ -1,7 +1,10 @@
-const NotFound = () => {
+import ChatList from "../components/ChatList"
+
+const NotFound = (props) => {
     return (
         <div>
-            NotFound
+            <ChatList chats={props.chats} />
+            <div> Not Found</div>
         </div>
     )
 }

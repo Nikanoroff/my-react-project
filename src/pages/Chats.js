@@ -2,30 +2,18 @@ import { Paper } from "@mui/material"
 import { useState } from "react"
 import { useParams } from "react-router-dom"
 import ChatList from "../components/ChatList"
+import ControlPanel from "../components/ControlPanel"
 import MessageList from "../components/MessageList"
 import { AUTHORS } from "../constants/common"
 import NotFound from "./NotFound"
 
 
-const initialChat = {
-    id1: {
-        name: 'Chat 1',
-        messages: [{ text: 'message from Chat num one', author: AUTHORS.bot }]
-    },
-    id2: {
-        name: 'Chat 2',
-        messages: [{ text: 'message from another Chat', author: AUTHORS.me }]
-    },
-    id3: {
-        name: 'Chat 3',
-        messages: [{ text: 'message from  Chat number three ', author: AUTHORS.me }]
-    }
-}
 
 
 
-const Chats = () => {
-    const [chats, setChats] = useState(initialChat)
+
+const Chats = (props) => {
+    const { chats, setChats } = props
     const { chatId } = useParams()
 
     if (!chats[chatId]) {
@@ -41,6 +29,7 @@ const Chats = () => {
             <div className='chatItem'>
                 <Paper elevation={1}>
                     <MessageList messages={chats[chatId].messages} />
+                    <ControlPanel chats={chats} setChats={setChats} />
                 </Paper>
             </div>
 
