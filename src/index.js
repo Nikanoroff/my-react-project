@@ -5,17 +5,20 @@ import App from './App';
 import { ThemeProvider } from '@emotion/react';
 import theme from './theme/theme';
 import { BrowserRouter } from "react-router-dom";
+import store from './store';
+import { Provider } from 'react-redux';
 
 ReactDOM.render(
   <React.StrictMode>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </ThemeProvider>
+    </Provider>
 
-    <ThemeProvider theme={theme}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </ThemeProvider>
-
-  </React.StrictMode>,
+  </React.StrictMode >,
   document.getElementById('root')
 );
 

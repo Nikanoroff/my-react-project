@@ -14,7 +14,7 @@ const ChatList = (props) => {
                 <ListItem key={index}>
                     <Link to={`/chats/${id}`}>
                         <b style={{ color: id === chatId ? 'green' : 'grey' }}>
-                            {chats[id].name}
+                            {chats?.[id]?.name}
                         </b>
                     </Link>
                 </ListItem>
