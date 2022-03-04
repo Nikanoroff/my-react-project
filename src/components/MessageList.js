@@ -9,21 +9,27 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import { grey } from "@mui/material/colors";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 
-const MessageList = (props) => {
-    const { messages } = props
+const MessageList = () => {
+
+    const allMessages = useSelector(state => state.messages.messageList)
+    const { chatId } = useParams()
+    const messages = allMessages[chatId]
+
 
     return (
         <div className='messanger'>
 
             <List sx={{ width: '100%', bgcolor: grey, maxWidth: 350 }}>
 
-                {messages?.map((item, index) => (
-                    <ListItem key={index}>
+                {messages?.map((item) => (
+                    <ListItem key={item.id}>
                         <ListItemAvatar>
                             <Avatar>
-                                {item.author === AUTHORS.me ? <AccountCircleIcon /> : <AndroidIcon />}
+                                {item.author !== AUTHORS.bot ? <AccountCircleIcon /> : <AndroidIcon />}
                             </Avatar>
                         </ListItemAvatar>
                         <ListItemText primary={item.text} secondary={item.author} />

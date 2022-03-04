@@ -1,21 +1,37 @@
-import { Checkbox, FormControlLabel, FormGroup } from "@mui/material";
-import { useCallback } from "react"
+import { Send } from "@mui/icons-material";
+import { Checkbox, Fab, FormControlLabel, FormGroup, TextField } from "@mui/material";
+import { useCallback, useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
 // import store from "../store"
-import { exampleAction } from '../store/profile/actions';
+import { changeName, exampleAction } from '../store/profile/actions';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Profile = () => {
-    const { showName, name } = useSelector(state => state)
 
+    const { showName, name } = useSelector(state => state.profile)
     const dispatch = useDispatch()
+    const [value, setValue] = useState(name)
+
+
     const toggleShowName = useCallback(() => {
         dispatch(exampleAction)
 
     }, [dispatch])
 
+    const handleInput = (event) => {
+        setValue(event.target.value)
+    }
+
+    const handelButton = () => {
+        dispatch(changeName(value))
+        toast.success('Name Added Successfully')
+    }
+
 
     return (
         <div>
+            <ToastContainer />
             <h1>Profile</h1>
 
             <FormGroup>
@@ -26,9 +42,20 @@ const Profile = () => {
                     />}
                     label='Toggle Your Name' />
             </FormGroup>
+            {showName && <div>
+                <TextField
+                    value={value}
+                    onChange={handleInput}
+                />
 
-            <div>Name:{showName ? name : 'No name'}</div>
-
+                <Fab color='primary'
+                    className='button'
+                    type={'button'}
+                    onClick={handelButton}
+                >
+                    <Send />
+                </Fab>
+            </div>}
         </div >
     )
 }

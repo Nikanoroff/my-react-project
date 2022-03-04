@@ -1,6 +1,5 @@
 import './App.scss';
-import React, { useEffect, useState } from 'react';
-import { AUTHORS } from './constants/common';
+import React from 'react';
 import { List, ListItem } from '@mui/material';
 // import { Fab } from '@mui/material';
 // import { Send } from '@mui/icons-material';
@@ -14,28 +13,13 @@ import NotFound from './pages/NotFound';
 import { grey } from "@mui/material/colors";
 
 
-const initialChat = {
-  id1: {
-    name: 'Chat 1',
-    messages: [{ text: 'message from Chat num one', author: AUTHORS.bot }]
-  },
-  id2: {
-    name: 'Chat 2',
-    messages: [{ text: 'message from another Chat', author: AUTHORS.me }]
-  },
-  id3: {
-    name: 'Chat 3',
-    messages: [{ text: 'message from  Chat number three ', author: AUTHORS.me }]
-  }
-}
-
 // export const MyThemeContext = React.createContext({ theme: 'dark' })
 // export const DataContext = React.createContext({ message: ['hello', 'how have you been?'] })
 // export const LocalizationContext = React.createContext('')
 
 
 function App(props) {
-  const [chats, setChats] = useState(initialChat)
+
 
   return (
     <React.Fragment>
@@ -72,8 +56,8 @@ function App(props) {
           <Route path='/' exact element={<Home />} />
           <Route path='/profile' element={<Profile />} />
           <Route path='/chats/:chatId' element={
-            <Chats chats={chats} setChats={(chat) => setChats(chat)} />} />
-          <Route path="*" element={<NotFound chats={chats} />} />
+            <Chats />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </header >
 

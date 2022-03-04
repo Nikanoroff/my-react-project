@@ -1,4 +1,4 @@
-import { EXAMPLE_ACTIONS } from "./actions"
+import { CHANGE_NAME, EXAMPLE_ACTIONS } from "./actions"
 
 
 const initialState = {
@@ -13,6 +13,12 @@ const profileReduser = (state = initialState, action) => {
             return {
                 ...state,
                 showName: !state.showName
+            }
+
+        case CHANGE_NAME:
+            return {
+                ...state,
+                name: action.payload
             }
 
         default:
