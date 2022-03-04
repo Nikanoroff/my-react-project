@@ -1,0 +1,91 @@
+import { useTheme } from "@emotion/react"
+import { Send } from "@mui/icons-material"
+import { Fab, TextField } from "@mui/material"
+import { useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { useParams } from "react-router-dom"
+import { AUTHORS } from "../constants/common"
+import { useEffect } from "react"
+import { addMessage } from '../store/messages/actions';
+
+
+const ControlPanel = () => {
+
+    const [value, setValue] = useState('')
+    const theme = useTheme()
+    const { chatId } = useParams()
+    const { name } = useSelector(state => state.profile)
+    const allMessages = useSelector(state => state.messages.messageList)
+    const dispatch = useDispatch()
+    const messages = allMessages?.[chatId]
+
+
+    const handleInput = (event) => {
+        setValue(event.target.value)
+    }
+
+    const handlerButton = (event) => {
+        if (value !== '') {
+            const message = {
+                text: value,
+                author: name
+            }
+            dispatch(addMessage(chatId, message))
+            setValue('')
+        }
+    }
+
+
+    const handlerKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            handlerButton()
+        }
+    }
+
+    useEffect(() => {
+        let timer
+        if (messages?.length > 0 && messages[messages.length - 1]?.author === name) {
+            timer = setInterval(() => {
+                const message = {
+                    text: ' Hello this is your Bot Stepan!',
+                    author: AUTHORS.bot
+                }
+                dispatch(addMessage(chatId, message))
+            }, 1500)
+        }
+
+        return () => {
+            clearTimeout(timer)
+        }
+    }, [dispatch, name, chatId, messages])
+
+    return (
+        <div className='controlPlace'>
+            <TextField
+                style={{ margin: '20px' }}
+                id='outlined-basic'
+                label='Send Your Message'
+                variant='outlined'
+                className='input'
+                placeholder='Say Hello Bot Stepan!'
+                type={'text'}
+                value={value}
+                onChange={handleInput}
+                autoFocus={true}
+            />
+
+            <Fab color='primary'
+                className='button'
+                type={'button'}
+                onClick={handlerButton}
+                onKeyDown={handlerKeyDown}
+                style={{
+                    borderColor: theme.palette.sec
+                }}>
+                <Send />
+            </Fab>
+        </div>
+    )
+}
+
+export default ControlPanel
