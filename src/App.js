@@ -1,47 +1,79 @@
 import './App.scss';
 import React from 'react';
-// import Message from './message';
+import { List, ListItem } from '@mui/material';
+// import { Fab } from '@mui/material';
+// import { Send } from '@mui/icons-material';
+// import { useTheme } from '@emotion/react';
+// import MessageList from './components/MessageList';
+import { Routes, Route, Link } from "react-router-dom";
+import Home from './pages/Home';
+import Profile from './pages/Profile';
+import Chats from './pages/Chats';
+import NotFound from './pages/NotFound';
+import { grey } from "@mui/material/colors";
+import Gists from './pages/Gists';
+
+
+// export const MyThemeContext = React.createContext({ theme: 'dark' })
+// export const DataContext = React.createContext({ message: ['hello', 'how have you been?'] })
+// export const LocalizationContext = React.createContext('')
+
 
 function App(props) {
-  // const { myName, showGreen } = props
-  // console.log({ showGreen })    хороший вариант посмотреть, что пришло
+
+
   return (
-    <div>
-      <header className={`App-header ${props.showGreen ? 'header-green' : 'header-blue'}`}
-        style={{ top: props.paddingTop || '10px' }}>
-        Hello folks! This is my new React App
-        <h1>{props.myName}</h1>
-      </header>
+    <React.Fragment>
 
-      {/* <Message></Message> */}
+      {/* <LocalizationContext.Provider value={'en'}>
 
-    </div>
+        <DataContext.Provider value={{ message: 'Vania!' }}>
 
+          <MyThemeContext.Provider value={{ theme: 'dark' }}> */}
+
+      <header className='App-header'>
+
+        <List sx={{
+          width: '100%',
+          bgcolor: grey,
+          maxWidth: 350,
+          display: 'flex',
+          justifyContent: 'space-between'
+        }}>
+          <ListItem>
+            <Link to='/' className='link' >Home</Link>
+          </ListItem>
+          <ListItem>
+            <Link to='/profile' className='link'>Profile</Link>
+          </ListItem>
+          <ListItem>
+            <Link to='/chats' className='link' >Chats</Link>
+          </ListItem>
+          <ListItem>
+            <Link to='/gists' className='link' >Gists</Link>
+          </ListItem>
+        </List>
+
+        <div className='chatList'></div>
+
+        <Routes>
+          <Route path='/' exact element={<Home />} />
+          <Route path='/profile' element={<Profile />} />
+          <Route path='/gists' element={<Gists />} />
+          <Route path='/chats/:chatId' element={
+            <Chats />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </header >
+
+      {/* </MyThemeContext.Provider>
+
+        </DataContext.Provider >
+
+      </LocalizationContext.Provider > */}
+
+    </React.Fragment >
   );
 }
 
 export default App;
-
-
-
-
-
-
-
-
-
-// import logo from './logo.svg';
-{/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
