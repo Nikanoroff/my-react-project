@@ -2,7 +2,8 @@ import { Button, Dialog, List, ListItem, TextField } from "@mui/material"
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams, Link } from "react-router-dom"
-import { addChat } from "../store/chats/actions"
+import { addChat, deleteChat } from "../store/chats/actions"
+import { Delete } from '@mui/icons-material'
 
 const ChatList = () => {
     const [visible, setVisible] = useState(false)
@@ -22,6 +23,10 @@ const ChatList = () => {
         setVisible(false)
     }
 
+    const removeChat = (index) => {
+        dispatch(deleteChat(index))
+    }
+
 
     return (
         <>
@@ -32,6 +37,7 @@ const ChatList = () => {
                             <b style={{ color: chat.id === chatId ? 'green' : 'grey' }}>
                                 {chat.name}
                             </b>
+                            <button onClick={() => removeChat(index)}> <Delete /></button>
                         </Link>
                     </ListItem>
                 ))}

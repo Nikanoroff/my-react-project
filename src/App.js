@@ -11,6 +11,7 @@ import Profile from './pages/Profile';
 import Chats from './pages/Chats';
 import NotFound from './pages/NotFound';
 import { grey } from "@mui/material/colors";
+import Gists from './pages/Gists';
 
 
 // export const MyThemeContext = React.createContext({ theme: 'dark' })
@@ -48,6 +49,9 @@ function App(props) {
           <ListItem>
             <Link to='/chats' className='link' >Chats</Link>
           </ListItem>
+          <ListItem>
+            <Link to='/gists' className='link' >Gists</Link>
+          </ListItem>
         </List>
 
         <div className='chatList'></div>
@@ -55,6 +59,7 @@ function App(props) {
         <Routes>
           <Route path='/' exact element={<Home />} />
           <Route path='/profile' element={<Profile />} />
+          <Route path='/gists' element={<Gists />} />
           <Route path='/chats/:chatId' element={
             <Chats />} />
           <Route path="*" element={<NotFound />} />
