@@ -4,9 +4,11 @@ import { Fab, TextField } from "@mui/material"
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
-import { AUTHORS } from "../constants/common"
-import { useEffect } from "react"
+// import { AUTHORS } from "../constants/common"
+// import { useEffect } from "react"
 import { addMessage } from '../store/messages/actions';
+//{ addMessage,addMessageWithThunk}  from '../store/messages/actions';
+
 
 
 const ControlPanel = () => {
@@ -30,7 +32,9 @@ const ControlPanel = () => {
                 text: value,
                 author: name
             }
+            // addMessageWithSaga
             dispatch(addMessage(chatId, message))
+            // dispatch(addMessageWithThunk(chatId, message))
             setValue('')
         }
     }
@@ -42,22 +46,7 @@ const ControlPanel = () => {
         }
     }
 
-    useEffect(() => {
-        let timer
-        if (messages?.length > 0 && messages[messages.length - 1]?.author === name) {
-            timer = setInterval(() => {
-                const message = {
-                    text: ' Hello this is your Bot Stepan!',
-                    author: AUTHORS.bot
-                }
-                dispatch(addMessage(chatId, message))
-            }, 1500)
-        }
 
-        return () => {
-            clearTimeout(timer)
-        }
-    }, [dispatch, name, chatId, messages])
 
     return (
         <div className='controlPlace'>
