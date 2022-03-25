@@ -1,9 +1,9 @@
 import { Button, Dialog, List, ListItem, TextField } from "@mui/material"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams, Link } from "react-router-dom"
-import { addChat, deleteChat } from "../store/chats/actions"
 import { Delete } from '@mui/icons-material'
+import { addChatListWithFB, deleteChatListWithFB, initTrackerWithFb } from "../store/middleware"
 
 const ChatList = () => {
     const [visible, setVisible] = useState(false)
@@ -18,14 +18,19 @@ const ChatList = () => {
     const handelChange = (event) => setChatName(event.target.value)
 
     const onAddChat = () => {
-        dispatch(addChat(chatName))
+        dispatch(addChatListWithFB(chatName))
+        // dispatch(addChat(chatName))
         setChatName('')
         setVisible(false)
     }
 
     const removeChat = (index) => {
-        dispatch(deleteChat(index))
+        dispatch(deleteChatListWithFB(index))
     }
+
+    useEffect(() => {
+        dispatch(initTrackerWithFb())
+    }, [])
 
 
     return (
@@ -37,7 +42,7 @@ const ChatList = () => {
                             <b style={{ color: chat.id === chatId ? 'green' : 'grey' }}>
                                 {chat.name}
                             </b>
-                            <button onClick={() => removeChat(index)}> <Delete /></button>
+                            <button onClick={() => removeChat(chat.id)}> <Delete /></button>
                         </Link>
                     </ListItem>
                 ))}

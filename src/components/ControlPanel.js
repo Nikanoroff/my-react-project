@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 // import { AUTHORS } from "../constants/common"
 // import { useEffect } from "react"
-import { addMessage } from '../store/messages/actions';
+import { addMessageWithFB } from "../store/middleware"
 //{ addMessage,addMessageWithThunk}  from '../store/messages/actions';
 
 
@@ -33,7 +33,7 @@ const ControlPanel = () => {
                 author: name
             }
             // addMessageWithSaga
-            dispatch(addMessage(chatId, message))
+            dispatch(addMessageWithFB(chatId, message))
             // dispatch(addMessageWithThunk(chatId, message))
             setValue('')
         }

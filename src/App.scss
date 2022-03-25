@@ -25,7 +25,13 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+
+  > ul{
+    max-width: 650px;
+  }
 }
+
+
 
 .App-link {
   color: #61dafb;
@@ -137,4 +143,12 @@ font-size: 8px;
 .horizontalMenu{
   display: flex;
   justify-content: space-between; 
+}
+
+.email-field{
+  margin-bottom: 10px;
+}
+
+.password-field{
+  margin-bottom: 10px;
 }

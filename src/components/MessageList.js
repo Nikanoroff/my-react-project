@@ -9,8 +9,10 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import { grey } from "@mui/material/colors";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { getMessagesByChatIdWithFB } from "../store/middleware";
 
 
 const MessageList = () => {
@@ -18,7 +20,12 @@ const MessageList = () => {
     const allMessages = useSelector(state => state.messages.messageList)
     const { chatId } = useParams()
     const messages = allMessages[chatId]
+    const dispatch = useDispatch()
 
+
+    useEffect(() => {
+        dispatch(getMessagesByChatIdWithFB(chatId))
+    }, [chatId])
 
     return (
         <div className='messanger'>
