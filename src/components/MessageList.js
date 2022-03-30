@@ -2,7 +2,6 @@ import PropTypes from "prop-types"
 import { AUTHORS } from "../constants/common";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import AndroidIcon from '@mui/icons-material/Android';
-
 import Avatar from '@mui/material/Avatar';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
